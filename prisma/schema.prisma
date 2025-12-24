@@ -1,0 +1,73 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model sekolah {
+  id           String    @id @default(uuid()) @db.VarChar(60)
+  username     String?   @db.VarChar(100)
+  password     String?   @db.VarChar(100)
+  name         String?   @db.Text
+  npsn         String?   @db.VarChar(100)
+  email        String?   @db.VarChar(100)
+  phone_number String?   @db.VarChar(100)
+  create_at    DateTime  @default(now())
+  update_at    DateTime  @updatedAt
+
+  laporan      laporan[]
+}
+
+model kategori_bullying {
+  id         String    @id @default(uuid()) @db.VarChar(60)
+  name       String?   @db.Text
+  create_at  DateTime  @default(now())
+  update_at  DateTime  @updatedAt
+
+  laporan    laporan[]
+}
+
+model status {
+  id         String    @id @default(uuid()) @db.VarChar(60)
+  name       String?   @db.VarChar(150)
+  create_at  DateTime  @default(now())
+  update_at  DateTime  @updatedAt
+
+  laporan    laporan[]
+}
+
+model laporan {
+  id                 String    @id @default(uuid()) @db.VarChar(60)
+  ticket_id          String?   @db.VarChar(60)
+  nama_lengkap       String?   @db.Text
+  sekolah_id         String?   @db.VarChar(60)
+  kelas              String?   @db.VarChar(100)
+  email              String?   @db.VarChar(100)
+  whatsapp           String?   @db.VarChar(100)
+  lokasi             String?   @db.Text
+  kategori_id        String?   @db.VarChar(60)
+  deskripsi_kejadian String?   @db.Text
+  status_id          String?   @db.VarChar(60)
+  pesan_balasan      String?   @db.Text
+  catatan_internal   String?   @db.Text
+  create_at          DateTime  @default(now())
+  update_at          DateTime  @updatedAt
+
+  sekolah            sekolah?          @relation(fields: [sekolah_id], references: [id])
+  kategori_bullying  kategori_bullying? @relation(fields: [kategori_id], references: [id])
+  status             status?            @relation(fields: [status_id], references: [id])
+  attachments        attachments[]
+}
+
+model attachments {
+  id         String    @id @default(uuid()) @db.VarChar(60)
+  laporan_id String?   @db.VarChar(60)
+  path       String?   @db.Text
+  create_at  DateTime  @default(now())
+  update_at  DateTime  @updatedAt
+
+  laporan    laporan? @relation(fields: [laporan_id], references: [id], onDelete: Cascade)
+}

@@ -1,0 +1,18 @@
+<script>
+  const form = document.getElementById("form-submit");
+  form.addEventListener("submit", async function (e) {
+    e.preventDefault();
+    await fetch(
+      "https://api-hacktown.rusnandapurnama.com/api-dummy/submit-reports",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: e.target.email.value,
+        }),
+      }
+    );
+  });
+</script>
