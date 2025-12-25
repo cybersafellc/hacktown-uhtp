@@ -20,4 +20,8 @@ const getLaporans = Joi.object({
   desc: Joi.boolean().optional(),
 }).required();
 
-export default { create, getLaporans };
+const uploadFile = Joi.object({
+  path: Joi.string().required(),
+}).required();
+
+export default { create, getLaporans, uploadFile };

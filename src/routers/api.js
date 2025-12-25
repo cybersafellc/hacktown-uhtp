@@ -5,6 +5,7 @@ import { authorization } from "../middlewares/auth.middeware.js";
 import kategoriBullyingController from "../controllers/kategori-bullying.controller.js";
 import statusController from "../controllers/status.controller.js";
 import laporanController from "../controllers/laporan.controller.js";
+import { uploadFile } from "../middlewares/uploadFile.middleware.js";
 
 const router = express.Router();
 // router.post("/schools", schoolsController.create);
@@ -23,6 +24,7 @@ router.get("/laporans", authorization, laporanController.getLaporans);
 router.get("/sekolahs", sekolahController.getSekolahLists);
 router.get("/kategori-bullying", kategoriBullyingController.getKategoriLists);
 router.get("/status", statusController.getStatusList);
+router.post("/img", uploadFile, laporanController.uploadFile);
 router.post("/laporan", laporanController.create); // disini dlu ya
 
 // temporarily api

@@ -168,4 +168,19 @@ async function getLaporans(request) {
   }
 }
 
-export default { create, getLaporans };
+async function uploadFile(request) {
+  try {
+    const result = await validation(laporanValidation.uploadFile, request);
+    return new Response(
+      200,
+      "berhasil mengupload file, berikut link filenya",
+      result,
+      null,
+      false
+    );
+  } catch (error) {
+    next(error);
+  }
+}
+
+export default { create, getLaporans, uploadFile };

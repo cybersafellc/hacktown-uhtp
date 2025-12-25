@@ -1,4 +1,5 @@
 import laporanService from "../services/laporan.service.js";
+import { ResponseError } from "../utils/response.js";
 
 async function create(req, res, next) {
   try {
@@ -25,4 +26,20 @@ async function getLaporans(req, res, next) {
   }
 }
 
-export default { create, getLaporans };
+async function uploadFile(req, res, next) {
+  try {
+    if (!req?.file?.filename)
+      throw new ResponseError(
+        400,
+        "file dibutuhkan, anda tidak mengirim file apapun"
+      );
+    const response = await laporanService.uploadFile({
+      path: "/img/" + req?.file?.filename,
+    });
+    res.status(response.status).json(response).end();
+  } catch (error) {
+    next(error);
+  }
+}
+
+export default { create, getLaporans, uploadFile };
