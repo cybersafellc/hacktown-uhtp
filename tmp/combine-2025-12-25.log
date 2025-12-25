@@ -25,3 +25,16 @@
 {"level":"info","message":{"duration":6,"params":"[\"%%\",\"%%\"]","query":"SELECT COUNT(*) FROM (SELECT `hacktown`.`sekolah`.`id` FROM `hacktown`.`sekolah` WHERE (`hacktown`.`sekolah`.`name` LIKE ? OR `hacktown`.`sekolah`.`npsn` LIKE ?)) AS `sub`","target":"quaint::connector::metrics","timestamp":"2025-12-25T04:33:30.592Z"},"timestamp":"2025-12-25T04:33:30.592Z"}
 {"level":"info","message":{"duration":0,"params":"[\"%%\",\"%%\",10,0]","query":"SELECT `hacktown`.`sekolah`.`id`, `hacktown`.`sekolah`.`username`, `hacktown`.`sekolah`.`password`, `hacktown`.`sekolah`.`name`, `hacktown`.`sekolah`.`npsn`, `hacktown`.`sekolah`.`email`, `hacktown`.`sekolah`.`phone_number`, `hacktown`.`sekolah`.`create_at`, `hacktown`.`sekolah`.`update_at` FROM `hacktown`.`sekolah` WHERE (`hacktown`.`sekolah`.`name` LIKE ? OR `hacktown`.`sekolah`.`npsn` LIKE ?) ORDER BY `hacktown`.`sekolah`.`update_at` ASC LIMIT ? OFFSET ?","target":"quaint::connector::metrics","timestamp":"2025-12-25T04:33:30.593Z"},"timestamp":"2025-12-25T04:33:30.593Z"}
 {"level":"info","message":{"duration":0,"params":"[\"40bbdb22-4472-4784-b6b3-7bc08f7d534e\",1,0]","query":"SELECT `hacktown`.`sekolah`.`id`, `hacktown`.`sekolah`.`username`, `hacktown`.`sekolah`.`password`, `hacktown`.`sekolah`.`name`, `hacktown`.`sekolah`.`npsn`, `hacktown`.`sekolah`.`email`, `hacktown`.`sekolah`.`phone_number`, `hacktown`.`sekolah`.`create_at`, `hacktown`.`sekolah`.`update_at` FROM `hacktown`.`sekolah` WHERE (`hacktown`.`sekolah`.`id` = ? AND 1=1) LIMIT ? OFFSET ?","target":"quaint::connector::metrics","timestamp":"2025-12-25T04:33:35.900Z"},"timestamp":"2025-12-25T04:33:35.900Z"}
+{"level":"info","message":"server running on https://api-hacktown.rusnandapurnama.com","timestamp":"2025-12-25T04:45:19.292Z"}
+{"level":"info","message":"server running on https://api-hacktown.rusnandapurnama.com","timestamp":"2025-12-25T04:45:21.070Z"}
+{"level":"info","message":"server running on https://api-hacktown.rusnandapurnama.com","timestamp":"2025-12-25T04:45:55.342Z"}
+{"level":"info","message":"server running on https://api-hacktown.rusnandapurnama.com","timestamp":"2025-12-25T04:46:15.027Z"}
+{"level":"info","message":"server running on https://api-hacktown.rusnandapurnama.com","timestamp":"2025-12-25T04:46:22.616Z"}
+{"level":"info","message":"server running on https://api-hacktown.rusnandapurnama.com","timestamp":"2025-12-25T04:46:33.611Z"}
+{"level":"info","message":"server running on https://api-hacktown.rusnandapurnama.com","timestamp":"2025-12-25T04:46:38.590Z"}
+{"level":"info","message":"server running on https://api-hacktown.rusnandapurnama.com","timestamp":"2025-12-25T04:47:19.547Z"}
+{"level":"info","message":"server running on https://api-hacktown.rusnandapurnama.com","timestamp":"2025-12-25T04:47:33.802Z"}
+{"level":"info","message":"server running on https://api-hacktown.rusnandapurnama.com","timestamp":"2025-12-25T04:47:38.400Z"}
+{"level":"info","message":"server running on https://api-hacktown.rusnandapurnama.com","timestamp":"2025-12-25T04:47:43.543Z"}
+{"level":"info","message":"server running on https://api-hacktown.rusnandapurnama.com","timestamp":"2025-12-25T04:47:51.656Z"}
+{"level":"info","message":"server running on https://api-hacktown.rusnandapurnama.com","timestamp":"2025-12-25T04:47:53.839Z"}
