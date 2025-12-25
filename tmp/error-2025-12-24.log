@@ -1,0 +1,42 @@
+{"level":"error","message":"\nInvalid `prisma.sekolah.count()` invocation:\n\n\nDatabase `bullying_chatbots` does not exist on the database server at `localhost:3306`.","target":"sekolah.count","timestamp":"2025-12-24T02:15:18.480Z"}
+{"level":"error","message":"\nInvalid `prisma.sekolah.count()` invocation:\n\n\nDatabase `bullying_chatbots` does not exist on the database server at `localhost:3306`.","timestamp":"2025-12-24T02:15:18.483Z"}
+{"level":"error","message":"count is not defined","timestamp":"2025-12-24T02:15:46.067Z"}
+{"level":"error","message":"count is not defined","timestamp":"2025-12-24T02:15:47.550Z"}
+{"level":"error","message":"count is not defined","timestamp":"2025-12-24T02:15:48.693Z"}
+{"level":"error","message":"undefined: Expected berhasil mendaftar sekolah to be one of: Null, Undefined, Object.","timestamp":"2025-12-24T02:16:03.132Z"}
+{"level":"error","message":"result is not defined","timestamp":"2025-12-24T02:28:22.658Z"}
+{"level":"error","message":"ResponseError is not defined","timestamp":"2025-12-24T02:36:47.173Z"}
+{"level":"error","message":"ResponseError is not defined","timestamp":"2025-12-24T02:36:48.689Z"}
+{"level":"error","message":"ResponseError is not defined","timestamp":"2025-12-24T02:36:49.719Z"}
+{"level":"error","message":"ResponseError is not defined","timestamp":"2025-12-24T02:39:43.187Z"}
+{"level":"error","message":"\nInvalid `prisma.sekolah.findMany()` invocation:\n\n{\n  orderBy: {\n    updated_at: \"asc\",\n    ~~~~~~~~~~\n?   id?: SortOrder,\n?   username?: SortOrder,\n?   password?: SortOrder | SortOrderInput,\n?   name?: SortOrder | SortOrderInput,\n?   npsn?: SortOrder,\n?   email?: SortOrder | SortOrderInput,\n?   phone_number?: SortOrder | SortOrderInput,\n?   create_at?: SortOrder,\n?   update_at?: SortOrder,\n?   laporan?: laporanOrderByRelationAggregateInput\n  },\n  where: {\n    OR: [\n      {\n        name: {\n          contains: \"\"\n        }\n      },\n      {\n        npsn: {\n          contains: \"\"\n        }\n      }\n    ]\n  },\n  skip: 0,\n  take: 10\n}\n\nUnknown argument `updated_at`. Did you mean `update_at`? Available options are marked with ?.","target":"sekolah.findMany","timestamp":"2025-12-24T03:33:04.654Z"}
+{"level":"error","message":"\nInvalid `prisma.sekolah.findMany()` invocation:\n\n{\n  orderBy: {\n    updated_at: \"asc\",\n    ~~~~~~~~~~\n?   id?: SortOrder,\n?   username?: SortOrder,\n?   password?: SortOrder | SortOrderInput,\n?   name?: SortOrder | SortOrderInput,\n?   npsn?: SortOrder,\n?   email?: SortOrder | SortOrderInput,\n?   phone_number?: SortOrder | SortOrderInput,\n?   create_at?: SortOrder,\n?   update_at?: SortOrder,\n?   laporan?: laporanOrderByRelationAggregateInput\n  },\n  where: {\n    OR: [\n      {\n        name: {\n          contains: \"\"\n        }\n      },\n      {\n        npsn: {\n          contains: \"\"\n        }\n      }\n    ]\n  },\n  skip: 0,\n  take: 10\n}\n\nUnknown argument `updated_at`. Did you mean `update_at`? Available options are marked with ?.","timestamp":"2025-12-24T03:33:04.657Z"}
+{"level":"error","message":"sekolahValidation is not defined","timestamp":"2025-12-24T06:03:04.162Z"}
+{"level":"error","message":"validation is not defined","timestamp":"2025-12-24T06:23:28.705Z"}
+{"level":"error","message":"undefined: Expected berhasil menambahkan status to be one of: Null, Undefined, Object.","timestamp":"2025-12-24T06:25:04.039Z"}
+{"level":"error","message":"result is not defined","timestamp":"2025-12-24T07:27:30.647Z"}
+{"level":"error","message":"result is not defined","timestamp":"2025-12-24T07:27:32.099Z"}
+{"level":"error","message":"Cannot read properties of undefined (reading 'sekolah_id')","timestamp":"2025-12-24T07:27:42.816Z"}
+{"level":"error","message":"Cannot read properties of undefined (reading 'status')","timestamp":"2025-12-24T07:27:54.601Z"}
+{"level":"error","message":"Cannot read properties of undefined (reading 'status')","timestamp":"2025-12-24T07:27:55.849Z"}
+{"level":"error","message":"Cannot read properties of undefined (reading 'status')","timestamp":"2025-12-24T07:27:57.001Z"}
+{"level":"error","message":"Cannot read properties of undefined (reading 'status')","timestamp":"2025-12-24T07:28:33.866Z"}
+{"level":"error","message":"Invalid status code: undefined. Status code must be an integer.","timestamp":"2025-12-24T07:49:29.788Z"}
+{"level":"error","message":"falsee is not defined","timestamp":"2025-12-24T07:51:02.832Z"}
+{"level":"error","message":"Invalid status code: undefined. Status code must be an integer.","timestamp":"2025-12-24T07:51:20.476Z"}
+{"level":"error","message":"Invalid status code: undefined. Status code must be an integer.","timestamp":"2025-12-24T07:52:17.441Z"}
+{"level":"error","message":"Cannot read properties of undefined (reading 'status')","timestamp":"2025-12-24T07:53:11.730Z"}
+{"level":"error","message":"Invalid login: 535 Authentication failure[0] [@ud010301]","timestamp":"2025-12-24T08:56:31.453Z"}
+{"level":"error","message":"Invalid login: 535 Authentication failure[0] [@ud010301]","timestamp":"2025-12-24T08:57:37.055Z"}
+{"level":"error","message":"Invalid login: 535 Authentication failure[0] [@ud010301]","timestamp":"2025-12-24T09:00:42.148Z"}
+{"level":"error","message":"transporter is not defined","timestamp":"2025-12-24T09:07:18.165Z"}
+{"level":"error","message":"Invalid login: 535 Authentication failure[0] [@ud010301]","timestamp":"2025-12-24T09:08:07.007Z"}
+{"level":"error","message":"Invalid login: 535 Authentication failure[0] [@ud010301]","timestamp":"2025-12-24T09:09:15.123Z"}
+{"level":"error","message":"Invalid login: 535 Authentication failure[0] [@ud010301]","timestamp":"2025-12-24T09:11:15.412Z"}
+{"level":"error","message":"Invalid login: 535 Authentication failure[0] [@ud010301]","timestamp":"2025-12-24T09:11:55.317Z"}
+{"level":"error","message":"Invalid login: 535 Authentication failure[0] [@ud010301]","timestamp":"2025-12-24T09:12:05.565Z"}
+{"level":"error","message":"Invalid login: 535 Authentication failure[0] [@ud010301]","timestamp":"2025-12-24T09:12:58.307Z"}
+{"level":"error","message":"Invalid login: 535 Authentication failure[0] [@ud010301]","timestamp":"2025-12-24T09:13:06.466Z"}
+{"level":"error","message":"Invalid login: 535 Authentication failure[0] [@ud010301]","timestamp":"2025-12-24T09:14:12.593Z"}
+{"level":"error","message":"Invalid login: 535 Authentication failure[0] [@ud010301]","timestamp":"2025-12-24T09:14:38.293Z"}
+{"level":"error","message":"Mail command failed: 500 Bad request (syntax error or unrecognized) [@sm190201]","timestamp":"2025-12-24T09:20:15.968Z"}
