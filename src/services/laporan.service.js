@@ -5,6 +5,7 @@ import { Response, ResponseError } from "../utils/response.js";
 import { generateTicketId } from "../utils/mix.js";
 import { transporter } from "../app/mail.js";
 import { logger } from "../app/logging.js";
+import fs from "fs/promises";
 
 async function create(request) {
   const result = await validation(laporanValidation.create, request);
@@ -45,12 +46,18 @@ async function create(request) {
     },
   });
 
+  // pengiriman email
+  const fromEmail = process.env.USER_SMTP;
+  let body = await fs.readFile("src/utils/mail.html", "utf-8");
+  body = body.replace("{{name}}", result.nama_lengkap);
+  body = body.replace("{{kode}}", result.ticket_id);
+
   transporter
     .sendMail({
-      from: `"Sekolah Aman" <sekolah-aman@belibelionli.com>`,
+      from: `'"Sekolah Aman" <${fromEmail}>'`,
       to: `${result.email}`,
       subject: `Laporan Diterima - ${result.ticket_id}`,
-      html: `<!DOCTYPE html><html lang="id"><head> <meta charset="UTF-8" /> <meta name="viewport" content="width=device-width, initial-scale=1.0"/> <title>Lapor Bullying</title> <style> * { box-sizing: border-box; font-family: system-ui, sans-serif; } body { margin: 0; height: 100vh; display: flex; align-items: center; justify-content: center; background: #f5f7fb; } .box { background: #fff; width: 320px; padding: 28px; border-radius: 14px; box-shadow: 0 12px 30px rgba(0,0,0,.08); } h2 { margin: 0 0 20px; text-align: center; font-size: 1.2rem; } input, select { width: 100%; padding: 12px; margin-bottom: 14px; border-radius: 10px; border: 1px solid #e5e7eb; outline: none; font-size: .9rem; } input:focus, select:focus { border-color: #4f46e5; } button { width: 100%; padding: 12px; border: none; border-radius: 10px; background: #4f46e5; color: #fff; font-weight: 600; cursor: pointer; } button:hover { background: #4338ca; } </style></head><body> <div class="box"> <h2>Lapor Bullying - Ticket</h2> <h2 style="text-align: center;">${result.ticket_id}</h2> </div></body></html>`, // HTML version of the message
+      html: body,
     })
     .then((data) => {
       logger.info("berhasil mengirim email");
