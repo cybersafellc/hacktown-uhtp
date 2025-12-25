@@ -9,6 +9,7 @@ const create = Joi.object({
   lokasi: Joi.string().required(),
   kategori_id: Joi.string().required(),
   deskripsi_kejadian: Joi.string().required(),
+  attachments: Joi.array().items(Joi.string()).optional(),
 }).required();
 
 const getLaporans = Joi.object({

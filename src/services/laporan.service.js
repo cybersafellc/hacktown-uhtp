@@ -37,7 +37,10 @@ async function create(request) {
   result.pesan_balasan = " ";
   result.catatan_internal = " ";
 
-  const createResponse = await database.laporan.create({
+  const images = result.attachments;
+  result.attachments = undefined;
+
+  let createResponse = await database.laporan.create({
     data: result,
     include: {
       sekolah: true,
@@ -45,6 +48,30 @@ async function create(request) {
       status: true,
     },
   });
+
+  if (images) {
+    for (const img of images) {
+      await database.attachments.create({
+        data: {
+          id: crypto.randomUUID(),
+          laporan_id: createResponse.id,
+          path: img,
+        },
+      });
+    }
+
+    createResponse = await database.laporan.findUnique({
+      where: {
+        id: createResponse.id,
+      },
+      include: {
+        sekolah: true,
+        kategori_bullying: true,
+        status: true,
+        attachments: true,
+      },
+    });
+  }
 
   // pengiriman email
   const fromEmail = process.env.USER_SMTP;
@@ -90,6 +117,7 @@ async function getLaporans(request) {
         sekolah: true,
         kategori_bullying: true,
         status: true,
+        attachments: true,
       },
     });
     if (!response) throw new ResponseError(400, "laporan tidak ditemukan");
@@ -145,6 +173,7 @@ async function getLaporans(request) {
         sekolah: true,
         kategori_bullying: true,
         status: true,
+        attachments: true,
       },
       skip: ((result?.page || 1) - 1) * (result?.items_per_page || 10),
       take: result?.items_per_page || 10,
