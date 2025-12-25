@@ -42,4 +42,15 @@ async function uploadFile(req, res, next) {
   }
 }
 
-export default { create, getLaporans, uploadFile };
+async function getLaporanWithTicket(req, res, next) {
+  try {
+    const response = await laporanService.getLaporanWithTicket({
+      ticket_id: req.params.id,
+    });
+    res.status(response.status).json(response).end();
+  } catch (error) {
+    next(error);
+  }
+}
+
+export default { create, getLaporans, uploadFile, getLaporanWithTicket };

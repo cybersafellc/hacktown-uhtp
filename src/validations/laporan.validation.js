@@ -25,4 +25,8 @@ const uploadFile = Joi.object({
   path: Joi.string().required(),
 }).required();
 
-export default { create, getLaporans, uploadFile };
+const getLaporanWithTicket = Joi.object({
+  ticket_id: Joi.string().required(),
+}).required();
+
+export default { create, getLaporans, uploadFile, getLaporanWithTicket };

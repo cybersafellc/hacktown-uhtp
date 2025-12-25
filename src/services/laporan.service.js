@@ -212,4 +212,35 @@ async function uploadFile(request) {
   }
 }
 
-export default { create, getLaporans, uploadFile };
+async function getLaporanWithTicket(request) {
+  const result = await validation(
+    laporanValidation.getLaporanWithTicket,
+    request
+  );
+  const data = await database.laporan.findFirst({
+    where: {
+      ticket_id: result.ticket_id,
+    },
+    include: {
+      sekolah: true,
+      kategori_bullying: true,
+      status: true,
+      attachments: true,
+    },
+  });
+  if (!data) throw new ResponseError(400, "ticket id tidak ditemukan");
+  return new Response(
+    200,
+    "berhasil mendapatkan laporan ber id " + result.ticket_id,
+    data,
+    null,
+    false
+  );
+}
+
+export default {
+  create,
+  getLaporans,
+  uploadFile,
+  getLaporanWithTicket,
+};

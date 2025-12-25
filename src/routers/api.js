@@ -26,6 +26,7 @@ router.get("/kategori-bullying", kategoriBullyingController.getKategoriLists);
 router.get("/status", statusController.getStatusList);
 router.post("/img", uploadFile, laporanController.uploadFile);
 router.post("/laporan", laporanController.create); // disini dlu ya
+router.get("/laporan/ticket/:id", laporanController.getLaporanWithTicket);
 
 // temporarily api
 router.post("/kategori-bullying", kategoriBullyingController.create);
