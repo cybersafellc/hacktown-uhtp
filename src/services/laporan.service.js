@@ -104,7 +104,6 @@ async function create(request) {
 
 async function getLaporans(request) {
   const result = await validation(laporanValidation.getLaporans, request);
-  console.log(result);
   let response;
   let custom_data = {};
   if (result.id) {
