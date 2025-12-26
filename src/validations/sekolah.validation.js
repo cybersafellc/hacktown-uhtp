@@ -26,4 +26,11 @@ const getSekolahLists = Joi.object({
   desc: Joi.boolean().optional(),
 }).required();
 
-export default { create, login, getProfile, getSekolahLists };
+const updateSekolah = Joi.object({
+  id: Joi.string().required(),
+  name: Joi.string().optional(),
+  email: Joi.string().optional(),
+  phone_number: Joi.string().optional(),
+}).required();
+
+export default { create, login, getProfile, getSekolahLists, updateSekolah };

@@ -52,10 +52,21 @@ async function getSekolahLists(req, res, next) {
   }
 }
 
+async function updateSekolah(req, res, next) {
+  try {
+    req.body.id = await req.id;
+    const response = await sekolahService.updateSekolah(req.body);
+    res.status(response.status).json(response).end();
+  } catch (error) {
+    next(error);
+  }
+}
+
 export default {
   create,
   login,
   verifyAccessToken,
   getProfile,
   getSekolahLists,
+  updateSekolah,
 };

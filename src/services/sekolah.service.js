@@ -153,10 +153,29 @@ async function getSekolahLists(request) {
   }
 }
 
+async function updateSekolah(requesst) {
+  const result = await validation(sekolahValidation.updateSekolah, requesst);
+  const count = await database.sekolah.count({
+    where: {
+      id: result.id,
+    },
+  });
+  if (!count)
+    throw new ResponseError(400, "id sekolah yang anda berikan tidak ada");
+  const responseUpdate = await database.sekolah.update({
+    where: {
+      id: result.id,
+    },
+    data: result,
+  });
+  return new Response(200, "berhasil mengupdate", responseUpdate, null, false);
+}
+
 export default {
   create,
   login,
   verifyAccessToken,
   getProfile,
   getSekolahLists,
+  updateSekolah,
 };
