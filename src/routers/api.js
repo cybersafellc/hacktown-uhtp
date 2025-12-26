@@ -6,6 +6,7 @@ import kategoriBullyingController from "../controllers/kategori-bullying.control
 import statusController from "../controllers/status.controller.js";
 import laporanController from "../controllers/laporan.controller.js";
 import { uploadFile } from "../middlewares/uploadFile.middleware.js";
+import androidController from "../controllers/android.controller.js";
 
 const router = express.Router();
 // router.post("/schools", schoolsController.create);
@@ -32,5 +33,8 @@ router.get("/laporan/ticket/:id", laporanController.getLaporanWithTicket);
 // temporarily api
 router.post("/kategori-bullying", kategoriBullyingController.create);
 router.post("/status", statusController.create);
+
+// android endpoint
+router.post("/alert", androidController.alertNotification)
 
 export default router;
