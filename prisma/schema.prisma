@@ -60,6 +60,7 @@ model laporan {
   kategori_bullying  kategori_bullying? @relation(fields: [kategori_id], references: [id])
   status             status?            @relation(fields: [status_id], references: [id])
   attachments        attachments[]
+  gps gps[]
 }
 
 model attachments {
@@ -70,4 +71,19 @@ model attachments {
   update_at  DateTime  @updatedAt
 
   laporan    laporan? @relation(fields: [laporan_id], references: [id], onDelete: Cascade)
+}
+
+model gps {
+  id         String   @id @db.VarChar(60)
+  laporan_id String   @db.VarChar(60)
+  lat        String?  @db.VarChar(25)
+  long       String?  @db.VarChar(25)
+  accuracy   String?  @db.VarChar(25)
+  create_at  DateTime?
+  update_at  DateTime?
+
+  // Relasi
+  laporan laporan @relation(fields: [laporan_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
+
+  @@map("gps")
 }
