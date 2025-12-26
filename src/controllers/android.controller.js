@@ -31,10 +31,11 @@ async function getData(req, res, next) {
 
     let dataForResponse = [];
     for (const d of data) {
+      const gtu = d.split(",");
       dataForResponse.push({
-        lat: d[0],
-        long: d[1],
-        accuracy: d[2],
+        lat: gtu[0],
+        long: gtu[1],
+        accuracy: gtu[2],
       });
     }
     const response = new Response(
