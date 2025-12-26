@@ -1,3 +1,5 @@
+import { Response } from "../utils/response.js";
+
 async function alertNotification(req, res, next) {
   try {
     console.log(req.body);
