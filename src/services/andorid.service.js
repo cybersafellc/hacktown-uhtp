@@ -34,4 +34,98 @@ async function create(request) {
   // logika notification to whatsapp
 }
 
-export default { create };
+async function getData(request) {
+  const result = await validation(androidValidation.getData, request);
+  let response;
+  let custom_data = {};
+  if (result.id) {
+    response = await database.gps.findUnique({
+      where: {
+        id: result.id,
+        laporan: {
+          sekolah_id: result.user_id,
+        },
+      },
+      include: {
+        laporan: true,
+      },
+    });
+    if (!response) throw new ResponseError(400, "gps tidak ditemukan");
+    return new Response(200, "list gps", response, null, false);
+  } else {
+    const total_user = await database.gps.count({
+      where: {
+        laporan: {
+          sekolah_id: result.user_id,
+        },
+        OR: [
+          {
+            lat: {
+              contains: result?.search || "",
+            },
+          },
+          {
+            long: {
+              contains: result?.search || "",
+            },
+          },
+          {
+            accuracy: {
+              contains: result?.search || "",
+            },
+          },
+        ],
+      },
+    });
+    response = await database.gps.findMany({
+      orderBy: {
+        update_at: result?.desc ? "desc" : "asc",
+      },
+      where: {
+        laporan: {
+          sekolah_id: result.user_id,
+        },
+        OR: [
+          {
+            lat: {
+              contains: result?.search || "",
+            },
+          },
+          {
+            long: {
+              contains: result?.search || "",
+            },
+          },
+          {
+            accuracy: {
+              contains: result?.search || "",
+            },
+          },
+        ],
+      },
+      include: {
+        laporan: true,
+      },
+      skip: ((result?.page || 1) - 1) * (result?.items_per_page || 10),
+      take: result?.items_per_page || 10,
+    });
+
+    custom_data.items_per_page = result.items_per_page || 10;
+    custom_data.page = result.page || 1;
+    custom_data.max_page = Math.ceil(
+      total_user / (result.items_per_page || 10)
+    );
+    custom_data.search = result.search;
+    custom_data.total_data = total_user;
+
+    return new Response(
+      200,
+      "list gps",
+      { data: response, pagination: custom_data },
+      null,
+      false
+    );
+  }
+}
+
+export default { create, getData };

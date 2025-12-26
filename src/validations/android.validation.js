@@ -7,4 +7,13 @@ const create = Joi.object({
   accuracy: Joi.string().required(),
 }).required();
 
-export default { create };
+const getData = Joi.object({
+  user_id: Joi.string().required(),
+  id: Joi.string().optional(),
+  page: Joi.number().optional(),
+  items_per_page: Joi.number().optional(),
+  search: Joi.string().optional(),
+  desc: Joi.boolean().optional(),
+}).required();
+
+export default { create, getData };

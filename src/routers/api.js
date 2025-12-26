@@ -19,9 +19,10 @@ router.get(
 );
 // wajib sertakan token
 router.get("/sekolah", authorization, sekolahController.getProfile);
-router.put("/sekolah", authorization, sekolahController.updateSekolah)
+router.put("/sekolah", authorization, sekolahController.updateSekolah);
 router.get("/laporans", authorization, laporanController.getLaporans);
 router.put("/laporan", authorization, laporanController.update);
+router.get("/alert", authorization, androidController.getData);
 
 // public
 router.get("/sekolahs", sekolahController.getSekolahLists);
@@ -36,7 +37,6 @@ router.post("/kategori-bullying", kategoriBullyingController.create);
 router.post("/status", statusController.create);
 
 // android endpoint
-router.post("/alert", androidController.alertNotification)
-router.get("/alert", androidController.getData)
+router.post("/alert", androidController.alertNotification);
 
 export default router;

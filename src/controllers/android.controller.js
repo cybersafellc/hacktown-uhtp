@@ -13,27 +13,14 @@ async function alertNotification(req, res, next) {
 
 async function getData(req, res, next) {
   try {
-    const data = (await fs.readFile("private/gps.txt", "utf-8"))
-      .trim()
-      .split("\n")
-      .map((d) => d.trim());
-
-    let dataForResponse = [];
-    for (const d of data) {
-      const gtu = d.split(",");
-      dataForResponse.push({
-        lat: gtu[0],
-        long: gtu[1],
-        accuracy: gtu[2],
-      });
-    }
-    const response = new Response(
-      200,
-      "berhasil meresponse",
-      dataForResponse,
-      null,
-      false
-    );
+    const response = await andoridService.getData({
+      user_id: await req.id,
+      search: req?.query?.search,
+      id: req?.query?.id,
+      page: req?.query?.page,
+      items_per_page: req?.query?.items_per_page,
+      desc: req?.query?.desc,
+    });
     res.status(response.status).json(response).end();
   } catch (error) {
     next(error);
