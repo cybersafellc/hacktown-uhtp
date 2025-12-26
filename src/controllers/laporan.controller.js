@@ -53,4 +53,19 @@ async function getLaporanWithTicket(req, res, next) {
   }
 }
 
-export default { create, getLaporans, uploadFile, getLaporanWithTicket };
+async function update(req, res, next) {
+  try {
+    const response = await laporanService.update(req.body);
+    res.status(response.status).json(response).end();
+  } catch (error) {
+    next(error);
+  }
+}
+
+export default {
+  create,
+  getLaporans,
+  uploadFile,
+  getLaporanWithTicket,
+  update,
+};

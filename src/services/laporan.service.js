@@ -238,9 +238,40 @@ async function getLaporanWithTicket(request) {
   );
 }
 
+async function update(request) {
+  const result = await validation(laporanValidation.update, request);
+  const countLpr = await database.laporan.count({
+    where: {
+      id: result.id,
+    },
+  });
+  if (!countLpr)
+    throw new ResponseError(400, "id laporan yang anda berikan tidak valid");
+
+  if (result?.status_id) {
+    const count = await database.status.count({
+      where: {
+        id: result.status_id,
+      },
+    });
+    if (!count)
+      throw new ResponseError(400, "status id yang anda berikan tidak valid");
+  }
+
+  const responseUpdate = await database.laporan.update({
+    data: result,
+    where: {
+      id: result.id,
+    },
+  });
+
+  return new Response(200, "berhasil update", responseUpdate, null, false);
+}
+
 export default {
   create,
   getLaporans,
   uploadFile,
   getLaporanWithTicket,
+  update,
 };

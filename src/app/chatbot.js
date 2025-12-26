@@ -6,7 +6,7 @@ const userHistory = new Map();
 
 const dataForResponse = [
   {
-    text: "[REPORT]",
+    text: "kekerasan fisik",
     response:
       "Oke saya paham anda pasti takut ingin melapor langsung apa yang anda alami di sekolah, anda bisa membuat laporan tersebut di form ini : https://message.testings/hehe",
   },
@@ -14,8 +14,8 @@ const dataForResponse = [
 
 wss.on("connection", (socket) => {
   userHistory.set(socket, []);
-
   socket.on("message", async (data) => {
+    socket.send("Hello ini testing");
     // cek dulu siapa tau meminta data pasti
     const message = data.toString();
     for (const tp of dataForResponse) {
@@ -28,30 +28,30 @@ wss.on("connection", (socket) => {
     const history = userHistory.get(socket);
     history.push({ role: "user", content: data.toString() });
 
-    const res = await ollama.chat({
-      model: "llama3.1:8b-instruct-q4_K_M",
-      messages: [
-        { role: "system", content: "kamu pendengar empatik" },
-        {
-          role: "system",
-          content: "yang mengobrol bersamamu adalah korban bullying",
-        },
-        ...history,
-      ],
-      stream: true,
-    });
+    // const res = await ollama.chat({
+    //   model: "llama3.1:8b-instruct-q4_K_M",
+    //   messages: [
+    //     { role: "system", content: "kamu pendengar empatik" },
+    //     {
+    //       role: "system",
+    //       content: "yang mengobrol bersamamu adalah korban bullying",
+    //     },
+    //     ...history,
+    //   ],
+    //   stream: true,
+    // });
 
-    let fullResponse = "";
+    // let fullResponse = "";
 
-    for await (const part of res) {
-      fullResponse += part.message?.content || "";
-    }
+    // for await (const part of res) {
+    //   fullResponse += part.message?.content || "";
+    // }
 
-    // kirim setelah selesai
-    socket.send(fullResponse);
+    // // // kirim setelah selesai
+    // socket.send(fullResponse);
 
-    // simpan ke history biar percakapan lanjut
-    history.push({ role: "assistant", content: fullResponse });
+    // // simpan ke history biar percakapan lanjut
+    // history.push({ role: "assistant", content: fullResponse });
   });
 });
 

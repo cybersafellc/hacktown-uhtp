@@ -19,6 +19,7 @@ router.get(
 // wajib sertakan token
 router.get("/sekolah", authorization, sekolahController.getProfile);
 router.get("/laporans", authorization, laporanController.getLaporans);
+router.put("/laporan", authorization, laporanController.update);
 
 // public
 router.get("/sekolahs", sekolahController.getSekolahLists);

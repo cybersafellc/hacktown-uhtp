@@ -29,4 +29,17 @@ const getLaporanWithTicket = Joi.object({
   ticket_id: Joi.string().required(),
 }).required();
 
-export default { create, getLaporans, uploadFile, getLaporanWithTicket };
+const update = Joi.object({
+  id: Joi.string().required(),
+  status_id: Joi.string().optional(),
+  pesan_balasan: Joi.string().optional(),
+  catatan_internal: Joi.string().optional(),
+}).required();
+
+export default {
+  create,
+  getLaporans,
+  uploadFile,
+  getLaporanWithTicket,
+  update,
+};
