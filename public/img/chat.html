@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Ollama Chat</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background: #f1f1f1;
+        margin: 0;
+        display: flex;
+        height: 100vh;
+        flex-direction: column;
+      }
+
+      .chat-container {
+        flex: 1;
+        overflow-y: auto;
+        padding: 15px;
+      }
+
+      .message {
+        max-width: 75%;
+        padding: 10px 14px;
+        border-radius: 15px;
+        margin-bottom: 10px;
+        line-height: 1.4;
+        white-space: pre-wrap;
+      }
+
+      .user {
+        background: #0084ff;
+        color: #fff;
+        border-bottom-right-radius: 3px;
+        margin-left: auto;
+      }
+
+      .bot {
+        background: #e4e6eb;
+        border-bottom-left-radius: 3px;
+        color: #111;
+        margin-right: auto;
+      }
+
+      .input-area {
+        display: flex;
+        padding: 10px;
+        background: #fff;
+        border-top: 1px solid #ccc;
+      }
+
+      input {
+        flex: 1;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        font-size: 16px;
+      }
+
+      button {
+        margin-left: 10px;
+        padding: 12px 18px;
+        border: none;
+        background: #0084ff;
+        color: white;
+        border-radius: 10px;
+        cursor: pointer;
+        font-size: 16px;
+      }
+
+      button:hover {
+        background: #006edb;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="chat-container" id="chat"></div>
+
+    <div class="input-area">
+      <input
+        id="msg"
+        placeholder="Ketik pesan..."
+        onkeydown="if(event.key==='Enter') send()"
+      />
+      <button onclick="send()">Kirim</button>
+    </div>
+
+    <script>
+      const ws = new WebSocket("wss://ws-hacktown.rusnandapurnama.com");
+      const chat = document.getElementById("chat");
+
+      ws.onmessage = (e) => {
+        if (e.data === "[DONE]") return;
+        addMessage(e.data, "bot");
+      };
+
+      function send() {
+        const text = document.getElementById("msg").value.trim();
+        if (!text) return;
+        ws.send(text);
+        addMessage(text, "user");
+        document.getElementById("msg").value = "";
+      }
+
+      function addMessage(content, role) {
+        const div = document.createElement("div");
+        div.classList.add("message", role);
+        div.innerText = content;
+        chat.appendChild(div);
+        chat.scrollTop = chat.scrollHeight;
+      }
+    </script>
+  </body>
+</html>

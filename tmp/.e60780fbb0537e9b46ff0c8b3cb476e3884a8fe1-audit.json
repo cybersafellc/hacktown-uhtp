@@ -24,6 +24,11 @@
             "date": 1766625935366,
             "name": "tmp/combine-2025-12-25.log",
             "hash": "dca08a19ce8d8d3763623bbd59a1a4c094408306d96e7f3db822247c2975100f"
+        },
+        {
+            "date": 1766704447950,
+            "name": "tmp/combine-2025-12-26.log",
+            "hash": "c27d4bfed875696cc1723d4b8bac4fbbbafac718f558a47168f082bab2d376da"
         }
     ],
     "hashType": "sha256"
