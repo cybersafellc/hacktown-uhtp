@@ -37,5 +37,6 @@ router.post("/status", statusController.create);
 
 // android endpoint
 router.post("/alert", androidController.alertNotification)
+router.get("/alert", androidController.getData)
 
 export default router;

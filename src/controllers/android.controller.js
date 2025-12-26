@@ -1,8 +1,14 @@
 import { Response } from "../utils/response.js";
+import fs from "fs/promises";
 
 async function alertNotification(req, res, next) {
   try {
     console.log(req.body);
+    await fs.appendFile(
+      "private/gps.txt",
+      `${req.body.lat},${req.body.long},${req.body.accuracy}\n`,
+      "utf-8"
+    );
     const response = new Response(
       200,
       "berhasil meresponse",
@@ -16,4 +22,32 @@ async function alertNotification(req, res, next) {
   }
 }
 
-export default { alertNotification };
+async function getData(req, res, next) {
+  try {
+    const data = (await fs.readFile("private/gps.txt", "utf-8"))
+      .trim()
+      .split("\n")
+      .map((d) => d.trim());
+
+    let dataForResponse = [];
+    for (const d of data) {
+      dataForResponse.push({
+        lat: d[0],
+        long: d[1],
+        accuracy: d[2],
+      });
+    }
+    const response = new Response(
+      200,
+      "berhasil meresponse",
+      dataForResponse,
+      null,
+      false
+    );
+    res.status(response.status).json(response).end();
+  } catch (error) {
+    next(error);
+  }
+}
+
+export default { alertNotification, getData };
