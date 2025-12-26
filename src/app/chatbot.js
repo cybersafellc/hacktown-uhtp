@@ -210,7 +210,6 @@ const dataForResponse = [
 wss.on("connection", (socket) => {
   userHistory.set(socket, []);
   socket.on("message", async (data) => {
-    socket.send("Hello ini testing");
     // cek dulu siapa tau meminta data pasti
     const message = data.toString();
     for (const tp of dataForResponse) {
