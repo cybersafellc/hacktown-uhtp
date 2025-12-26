@@ -1,21 +1,10 @@
+import andoridService from "../services/andorid.service.js";
 import { Response } from "../utils/response.js";
 import fs from "fs/promises";
 
 async function alertNotification(req, res, next) {
   try {
-    console.log(req.body);
-    await fs.appendFile(
-      "private/gps.txt",
-      `${req.body.lat},${req.body.long},${req.body.accuracy}\n`,
-      "utf-8"
-    );
-    const response = new Response(
-      200,
-      "berhasil meresponse",
-      req.body,
-      null,
-      false
-    );
+    const response = await andoridService.create(req.body);
     res.status(response.status).json(response).end();
   } catch (error) {
     next(error);
