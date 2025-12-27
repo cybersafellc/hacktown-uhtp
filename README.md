@@ -27,6 +27,7 @@
 | **BCrypt**                      | Password hashing                    |
 | **Winston + Daily Rotate File** | Logging system                      |
 | **Multer**                      | File uploading                      |
+| **Whatsapp JS**                 | Notification                        |
 
 ---
 
