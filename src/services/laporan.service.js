@@ -9,6 +9,7 @@ import fs from "fs/promises";
 
 async function create(request) {
   const result = await validation(laporanValidation.create, request);
+
   // cek id relasi
   const countSekolah = await database.sekolah.count({
     where: {
@@ -36,6 +37,14 @@ async function create(request) {
   result.ticket_id = generateTicketId();
   result.pesan_balasan = " ";
   result.catatan_internal = " ";
+  // chek apakah sudah ada ticket_idnya
+  const countTID = await database.laporan.count({
+    where: {
+      ticket_id: result.ticket_id,
+    },
+  });
+  if (countTID) throw new ResponseError(400, "terjadi kesalahan, coba lagi");
+  //
 
   const images = result.attachments;
   result.attachments = undefined;
