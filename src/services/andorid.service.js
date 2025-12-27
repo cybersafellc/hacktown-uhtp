@@ -2,12 +2,17 @@ import androidValidation from "../validations/android.validation.js";
 import { validation } from "../validations/validation.js";
 import { database } from "../app/database.js";
 import { Response, ResponseError } from "../utils/response.js";
+import { wa } from "../app/whatsapp.js";
+import { logger } from "../app/logging.js";
 
 async function create(request) {
   const result = await validation(androidValidation.create, request);
   const laporan = await database.laporan.findFirst({
     where: {
       ticket_id: result.ticket_id,
+    },
+    include: {
+      sekolah: true,
     },
   });
   if (!laporan)
@@ -23,6 +28,25 @@ async function create(request) {
       accuracy: result.accuracy,
     },
   });
+  // logika notification to whatsapp
+  try {
+    const nomor = `${laporan.sekolah.phone_number}@c.us`;
+    await wa.sendMessage(
+      nomor,
+      `
+    Anak Kita Dalam Bahaya !
+    Selamatkan Anak Kita Sekarang !
+    
+    Nama  : ${laporan.nama_lengkap}
+    Kelas : ${laporan.kelas}
+
+    Track : https://www.google.com/maps?q=${responseCreate.lat},${responseCreate.long}
+    `
+    );
+  } catch (error) {
+    logger.error(error.message);
+  }
+  //
   return new Response(
     200,
     "berhasil menambahkan data gps",
@@ -30,8 +54,6 @@ async function create(request) {
     null,
     false
   );
-
-  // logika notification to whatsapp
 }
 
 async function getData(request) {

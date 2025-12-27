@@ -6,4 +6,8 @@ function generateTicketId(prefix = "TKT") {
   return `${prefix}-${time}-${random}`;
 }
 
-export { generateTicketId };
+function delay(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+export { generateTicketId, delay };
