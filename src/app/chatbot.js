@@ -8,7 +8,7 @@ const dataForResponse = [
   {
     text: "kekerasan fisik",
     response:
-      "Oke saya paham anda pasti takut ingin melapor langsung apa yang anda alami di sekolah, anda bisa membuat laporan tersebut di form ini : https://message.testings/hehe",
+      "Oke saya paham anda pasti takut ingin melapor langsung apa yang anda alami di sekolah, anda bisa membuat laporan tersebut di form ini",
   },
   {
     text: "bully",
